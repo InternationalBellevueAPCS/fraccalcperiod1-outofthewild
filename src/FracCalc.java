@@ -8,15 +8,44 @@ public class FracCalc {
      */
     public static void main(String[] args) 
     {
-    	System.out.println("Print a fraction equation.");
     	Scanner console = new Scanner(System.in);
+    	System.out.println("Print an equation.");
     	String in = console.nextLine();
     	System.out.println(produceAnswer(in));
+    	System.out.println("");
+    	System.out.println("Print another equation. Type 'done' if you wish to close the program.");
+    	String choice = console.nextLine();
+    	if (choice.equals("done"))
+    	{
+    		System.out.println("Program Terminated.");
+    		System.exit(0);
+    	}
+    	System.out.println(produceAnswer(choice));
+    	while (!choice.equals("done"))
+    	{
+    		repeat();
+    	}
+    }
+    
+    public static void repeat() {
+    	System.out.println("");
+    	System.out.println("Print another equation. Type 'done' if you wish to close the program.");
+    	Scanner console = new Scanner(System.in);
+    	String in2 = console.nextLine();
+    	if (in2.equals("done"))
+		{
+    		System.out.println("Program Terminated.");
+			System.exit(0);
+		}
+    	System.out.println(produceAnswer(in2));
+    }
+    	
+    	
+    
     	
         // TODO: Read the input from the user and call produceAnswer with an equation
         // Checkpoint 1: Create a Scanner, read one line of input, pass that input to produceAnswer, print the result.
         // Checkpoint 2: Accept user input multiple times.
-    }
     
     /**
      * produceAnswer - This function takes a String 'input' and produces the result.
@@ -28,11 +57,39 @@ public class FracCalc {
     public static String produceAnswer(String input)
     { 
     	int x = input.indexOf(" ");
-    
+    	
     	String operand1 = input.substring(0, x);
     	String operand2 = input.substring(x+1, x+2);
     	String operand3 = input.substring(x+3, input.length());
-    	return(operand3);
+    	
+    	int w = operand3.indexOf("/");
+    	int y = operand3.indexOf("_");
+    	String z = ("");
+    	
+    	if (operand3.indexOf('_') > -1)
+    	{
+    	String wholeoperand3 = operand3.substring(0, y);
+    	z += ("whole: " + wholeoperand3);
+
+	    String demoperand3 = operand3.substring(w+1, operand3.length());
+	    String numoperand3 = operand3.substring(y+1, w);
+	    z += (" num: " + numoperand3);
+	    z += (" dem: " + demoperand3);
+	    return z;
+	    	}
+    
+    	else if (operand3.indexOf('/') > -1)
+    	{
+    		String demoperand3 = operand3.substring(w+1, operand3.length());
+    		String numoperand3 = operand3.substring(y+1, w);
+    		z += (" num: " + numoperand3);
+    		z += (" dem: " + demoperand3);
+    		return (z);
+    	}
+    	else
+    	{
+    		return(operand3);
+    	}
     	
     }
     	
