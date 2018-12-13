@@ -91,7 +91,6 @@ public static void Solve(String operator, String operand1, String operand2)
 {
 		analyzeFraction(true, operand1);
 		analyzeFraction(false, operand2);
-		operator = operator;
 
 		if (operator.equals("+")) // check if operator is addition sign
 		{
@@ -131,12 +130,12 @@ public static void analyzeFraction(Boolean operand1, String operand) // check pa
 	
 	else // if there is no whole number ('_')
 	{
-		String[] splitnumanddem = fraction.split("/");
+		String[] separate = fraction.split("/");
 
-		if (splitnumanddem.length == 2) // 2 values? then it's a fraction
+		if (separate.length == 2) // 2 values = it's a fraction
 		{
-			num = splitnumanddem[0];
-			dem = splitnumanddem[1];
+			num = separate[0];
+			dem = separate[1];
 		} 
 		else // else it is two whole numbers
 		{
